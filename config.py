@@ -1,12 +1,12 @@
 import pygame
-#from pygame.locals import *
+
 
 # Global configuration options
 SCREENSIZE              = [800, 440]#[960, 540]
 FPS                     = 30
 TITLE                   = "Missile Defence"
 SHOW_MOUSE              = True
-CURRENT_GAME_STATE      = 0
+current_game_state      = 0
 GAME_STATE_SPLASH       = 10
 GAME_STATE_MENU         = 20
 GAME_STATE_RUNNING      = 30

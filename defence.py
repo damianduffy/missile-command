@@ -46,8 +46,8 @@ class Defence():
 
     def shoot(self, missile_list):
         if self.ammo > 0:
-            # create new missile(origin, target, false=launch up, speed)
-            missile_list.append(Missile(self.pos, self.target_pos, False, 4))
+            # create new missile(origin, target, false=launch up, speed, points)
+            missile_list.append(Missile(self.pos, self.target_pos, False, 4, 0))
     
     def get_ammo(self):
         return self.ammo

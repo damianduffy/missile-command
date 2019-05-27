@@ -8,13 +8,13 @@ save high score file
 
 add sound effects
 
-CURRENT_GAME_STATE to lowercase (it changes)
-
 add splash
 
 add menu / credits
 
 add ammo limit
+
+add scoring based on missiles destroyed, cities remain, bonus / multiplier
 
 tweek gameplay mechanics
 

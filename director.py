@@ -51,7 +51,7 @@ class Director():
 
     # start new level
     def new_level(self, screen):
-        #global CURRENT_GAME_STATE
+        #global current_game_state
 
         # set new level difficulty parameters
         self.max_missile_count += self.difficulty_increment
@@ -70,7 +70,7 @@ class Director():
                             SCREENSIZE[1] // 2 - (get_ready.get_height() // 2) + new_level.get_height())
         screen.blit(new_level, new_level_pos)
         screen.blit(get_ready, get_ready_pos)
-        #CURRENT_GAME_STATE = GAME_STATE_NEW_LEVEL
+        #current_game_state = GAME_STATE_NEW_LEVEL
 
         #return GAME_STATE_RUNNING
 

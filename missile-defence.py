@@ -23,7 +23,7 @@ clock = pygame.time.Clock()
 
 
 def main():
-    global CURRENT_GAME_STATE
+    global current_game_state
 
     # set the random seed - produces more random trajectories
     random.seed()
@@ -104,17 +104,17 @@ def main():
         director.draw(screen)
 
         # --- update game director
-        CURRENT_GAME_STATE = director.update(missile_list, explosion_list, city_list)
+        current_game_state = director.update(missile_list, explosion_list, city_list)
 
         # load a message and set new game values for start new level
-        if CURRENT_GAME_STATE == GAME_STATE_NEW_LEVEL:
+        if current_game_state == GAME_STATE_NEW_LEVEL:
             director.new_level(screen)
         
         # Update the display
         pygame.display.update()
 
         # hold for few seconds before starting new level
-        if CURRENT_GAME_STATE == GAME_STATE_NEW_LEVEL:
+        if current_game_state == GAME_STATE_NEW_LEVEL:
             time.sleep(3)
             
         # run at pre-set fps

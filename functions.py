@@ -113,8 +113,7 @@ def check_collisions(missile_list, explosion_list, city_list):
     for explosion in explosion_list:
         for missile in missile_list[:]:
             if explosion.get_radius() > distance(explosion.get_center(), missile.get_pos()):
-                if missile.get_incoming() == 1:
-                    score += 10
+                score += missile.get_points() * explosion.get_points_multiplier()
                 missile_list.remove(missile)
         for city in city_list[:]:
             if explosion.get_radius() > distance(explosion.get_center(), city.get_pos()):
