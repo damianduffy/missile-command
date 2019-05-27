@@ -11,7 +11,7 @@ When the game reaches a release state, I'll compile it to binary using some of t
 ### From Source
 The following guide is for downloading the source and running on Linux.  Other platforms have not been tested but should run in a Python 3 environment.
 
-You should have Git and Python3 installed on your system.
+You need to have Git and Python3 installed on your system.
 
 Clone / download files from Github repository
 
@@ -30,9 +30,11 @@ Install the dependencies
 `pip install -r requirements.txt`
 
 Run the game!!
+
 `python missile-defence.py`
 
 To deactivate the virtual environment
+
 `deactivate`
 
 ## Original Game
