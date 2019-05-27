@@ -24,6 +24,7 @@ clock = pygame.time.Clock()
 
 def main():
     global CURRENT_GAME_STATE
+
     # set the random seed - produces more random trajectories
     random.seed()
 
@@ -64,11 +65,11 @@ def main():
                     pass
             if event.type == KEYDOWN:
                 if event.key == K_ESCAPE:
-                    exit_game()
+                    exit_game(screen)
                 if event.key == K_SPACE:
                     defence.shoot(missile_list)
                 if event.key == K_p:
-                    pause_game()
+                    pause_game(screen)
             if event.type == KEYUP:
                 pass
 
@@ -103,16 +104,19 @@ def main():
         director.draw(screen)
 
         # --- update game director
-        director.update(missile_list, explosion_list, city_list, screen)
+        CURRENT_GAME_STATE = director.update(missile_list, explosion_list, city_list)
 
+        # load a message and set new game values for start new level
+        if CURRENT_GAME_STATE == GAME_STATE_NEW_LEVEL:
+            director.new_level(screen)
+        
         # Update the display
         pygame.display.update()
-        
-        if CURRENT_GAME_STATE == GAME_STATE_NEW_LEVEL:
-            #director.new_level(screen)
-            time.sleep(3)
-            CURRENT_GAME_STATE = GAME_STATE_RUNNING
 
+        # hold for few seconds before starting new level
+        if CURRENT_GAME_STATE == GAME_STATE_NEW_LEVEL:
+            time.sleep(3)
+            
         # run at pre-set fps
         clock.tick(FPS)
 

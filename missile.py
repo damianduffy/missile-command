@@ -9,7 +9,7 @@ class Missile():
     def __init__(self, origin_pos, target_pos, incoming = True, speed = 1, trail_color = WARHEAD_TRAIL, warhead_color = WARHEAD):
         self.origin_pos = origin_pos            # starting position of missile
         self.target_pos = target_pos            # end position of missile
-        if incoming == True:                       # is this missile an interceptor (1 = yes[default], -1 = no)
+        if incoming == True:                       # is this missile incoming (1 = yes[default], -1 = no)
             self.incoming = 1
         else:
             self.incoming = -1                  
@@ -61,3 +61,6 @@ class Missile():
     # return the current position
     def get_pos(self):
         return self.pos
+
+    def get_incoming(self):
+        return self.incoming

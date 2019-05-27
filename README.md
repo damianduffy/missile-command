@@ -1,21 +1,10 @@
 # Work to be done
 
-fix score on destroying my own missiles
-
-director update & director new level
- - if statement for NEW LEVEL STATE not entering
- - set GAME STATE based on return value from director update
- - use that to enter if statement and sleep timer for 3 secs
- - remove screen from UPDATE
- - add screen to NEW_LEVEL
-
 load high score file
 
 update high score
 
 save high score file
-
-add screen prompts on pause / exit
 
 add sound effects
 
@@ -50,4 +39,5 @@ OR
  - have missiles target specific cities
  - explosion on ground creates semi-circle / masked by ground instead of circle
  - break event handler into seperate class
+ - consider detonating warhead instead of just removing the missile on destruction
 

@@ -29,7 +29,7 @@ class Director():
         screen.blit(self.high_score_text, (self.high_score_text_pos, 10))
         # TBC - draw the remaining ammo
 
-    def update(self, missile_list, explosion_list, city_list, screen):
+    def update(self, missile_list, explosion_list, city_list):
         # generate incoming missiles
         if self.missile_frequency % self.missile_interval == 0 and self.missile_count < self.max_missile_count:
             missile_list.append(Missile(self.get_origin(), self.get_target()))
@@ -44,11 +44,14 @@ class Director():
 
         # start next level
         if missile_list == [] and explosion_list == []:
-            self.new_level(screen)  
+            #self.new_level(screen)
+            return GAME_STATE_NEW_LEVEL
+
+        return GAME_STATE_RUNNING
 
     # start new level
     def new_level(self, screen):
-        global CURRENT_GAME_STATE
+        #global CURRENT_GAME_STATE
 
         # set new level difficulty parameters
         self.max_missile_count += self.difficulty_increment
@@ -67,7 +70,9 @@ class Director():
                             SCREENSIZE[1] // 2 - (get_ready.get_height() // 2) + new_level.get_height())
         screen.blit(new_level, new_level_pos)
         screen.blit(get_ready, get_ready_pos)
-        CURRENT_GAME_STATE = GAME_STATE_NEW_LEVEL
+        #CURRENT_GAME_STATE = GAME_STATE_NEW_LEVEL
+
+        #return GAME_STATE_RUNNING
 
     # returns a target for new incoming nukes
     def get_target(self):
