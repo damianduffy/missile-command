@@ -16,6 +16,7 @@ from director import Director
 
 # Initialize game engine, screen and clock
 pygame.init()
+#pygame.mixer.init()
 screen = pygame.display.set_mode(SCREENSIZE)
 pygame.mouse.set_visible(SHOW_MOUSE)
 pygame.display.set_caption(TITLE)
@@ -25,6 +26,9 @@ clock = pygame.time.Clock()
 def main():
     global current_game_state
 
+    # load high-score file
+    high_scores = load_scores("scores.json")
+    
     # set the random seed - produces more random trajectories
     random.seed()
 
@@ -49,6 +53,11 @@ def main():
 
     # setup the AI director
     director = Director()
+
+    # set the game running
+    current_game_state = GAME_STATE_RUNNING
+
+    show_high_scores(screen, high_scores)
 
     while True:
         # write event handlers here
@@ -101,14 +110,19 @@ def main():
                 explosion_list.remove(explosion)
 
         # --- Draw the interface 
-        director.draw(screen)
+        director.draw(screen, defence)
 
         # --- update game director
-        current_game_state = director.update(missile_list, explosion_list, city_list)
+        if current_game_state == GAME_STATE_RUNNING:
+            current_game_state = director.update(missile_list, explosion_list, city_list)
+
+        # load message for Game Over and proceed to high-score / menu
+        if current_game_state == GAME_STATE_OVER:
+            director.game_over(screen)
 
         # load a message and set new game values for start new level
         if current_game_state == GAME_STATE_NEW_LEVEL:
-            director.new_level(screen)
+            director.new_level(screen, defence)
         
         # Update the display
         pygame.display.update()
@@ -116,7 +130,19 @@ def main():
         # hold for few seconds before starting new level
         if current_game_state == GAME_STATE_NEW_LEVEL:
             time.sleep(3)
-            
+            current_game_state = GAME_STATE_RUNNING
+        
+        # hold for few seconds before proceeding to high-score or back to menu or game over splash
+        if current_game_state == GAME_STATE_OVER:
+            time.sleep(3)
+            # TBC - below line should move game on to new game state for menu/game-over/high-score/etc.
+            current_game_state = GAME_STATE_MENU
+        
+        # display the high scores
+        if current_game_state == GAME_STATE_MENU:
+            show_high_scores(screen, high_scores)
+            current_game_state = 0
+
         # run at pre-set fps
         clock.tick(FPS)
 

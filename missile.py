@@ -23,7 +23,10 @@ class Missile():
         self.pos = origin_pos                       # current position of warhead
         self.x = target_pos[0] - origin_pos[0]      # distance from x origin to x target
         self.y = target_pos[1] - origin_pos[1]      # distance from y origin to y target
-        self.m = self.x / self.y                    # slop of missile trajectory
+        if self.y != 0 :
+            self.m = self.x / self.y                # slop of missile trajectory
+        else:
+            self.m = 1
         self.angle = math.atan(self.m)              # angle of missile trajectory
         self.dist_to_target = distance(
                                 origin_pos, 
@@ -59,9 +62,14 @@ class Missile():
         self.detonated = True
         if self.incoming != 1:
             points_multiplier = 1
+            explosion_radius = INTERCEPT_RADIUS
+            explosion_color = INTERCEPT_EXPLOSION
         else:
             points_multiplier = 0
-        explosion_list.append(Explosion(self.pos, points_multiplier))
+            explosion_radius = NUKE_RADIUS
+            explosion_color = NUKE_EXPLOSION
+
+        explosion_list.append(Explosion(self.pos, points_multiplier, explosion_radius, explosion_color))
 
     # return the current position
     def get_pos(self):

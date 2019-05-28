@@ -16,7 +16,7 @@ class Defence():
         self.m = 0                                          # slop of gun barrel - will be set to correct value on first update
         self.angle = math.atan(self.m)                      # angle of gun barrel
         self.destroyed = False                              # has the defence been destroyed
-        self.ammo = 10                                      # number of missiles
+        self.ammo = 30                                      # number of missiles
         
 
     def draw(self, screen):
@@ -46,8 +46,12 @@ class Defence():
 
     def shoot(self, missile_list):
         if self.ammo > 0:
-            # create new missile(origin, target, false=launch up, speed, points)
-            missile_list.append(Missile(self.pos, self.target_pos, False, 4, 0))
+            # create new missile(origin, target, false=launch up, speed, points, trail color, warhead color)
+            missile_list.append(Missile(self.pos, self.target_pos, False, 8, 0, INTERCEPTER_TRAIL, INTERCEPTER))
+            self.ammo -= 1
     
     def get_ammo(self):
         return self.ammo
+    
+    def set_ammo(self, ammo):
+        self.ammo = ammo

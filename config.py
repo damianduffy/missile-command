@@ -1,10 +1,17 @@
 import pygame
+#from functions import *
 
+#pygame.mixer.init()
 
 # Global configuration options
 SCREENSIZE              = [800, 440]#[960, 540]
+# TBC - method of getting current display dimensions below
+'''
+infoObject = pygame.display.Info()
+pygame.display.set_mode((infoObject.current_w, infoObject.current_h))
+'''
 FPS                     = 30
-TITLE                   = "Missile Defence"
+TITLE                   = "Missile Command"
 SHOW_MOUSE              = True
 current_game_state      = 0
 GAME_STATE_SPLASH       = 10
@@ -31,6 +38,13 @@ INTERFACE_SEC           = (69, 127, 139)        # 457f8b
 NUKE_EXPLOSION          = (255, 0, 0)           # FF0000
 INTERCEPT_EXPLOSION     = (255, 255, 255)       # ffffff
 
-# define font
+# game font
 pygame.font.init()
 game_font = pygame.font.Font('data/fnt/PressStart2P-Regular.ttf', 16)
+
+# game sounds
+#EXPLOSION_SND = load_sound("explode.mp3")
+
+# gameplay settings
+INTERCEPT_RADIUS        = 35
+NUKE_RADIUS             = 50

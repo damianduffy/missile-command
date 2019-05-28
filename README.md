@@ -3,6 +3,10 @@
 ## Description
 Remake of the classic Missile Command game by Atari.  Just for fun and practicing Python / programming.  Comments / feedback welcome.  Keep in mind I'm not a professional and this is a hobby project.
 
+## Story
+
+
+
 ## How to Play
 
 ### Binary
@@ -37,6 +41,10 @@ To deactivate the virtual environment
 
 `deactivate`
 
+## Game Controls
+
+
+
 ## Original Game
 Missile Command is a 1980 arcade game developed and published by Atari, Inc. and licensed to Sega for European release. It was designed by Dave Theurer, who also designed Atari's vector graphics game Tempest from the same year. The 1981 Atari 2600 port of Missile Command by Rob Fulop sold over 2.5 million copies and became the third most popular cartridge for the system.
 
@@ -48,14 +56,15 @@ Missile Command is a 1980 arcade game developed and published by Atari, Inc. and
  - add:load high score file
  - add:update high score
  - add:save high score file
+ - update:display cities / destroyed cities
+ - update:add new design for intercepter(s)
  - add:add sound effects
  - add:add splash
  - add:add menu / credits
- - add:add ammo limit
+ - fix: overlap on text prompts (e.g. new level/game over ... followed by pause/exit)
  - add:add scoring based on missiles destroyed, cities remain, bonus / multiplier
  - add:tweek gameplay mechanics / play-test
  - add:clean up comments
- - add:update requirements.txt
 
 ## Roadmap / Possible Further Improvements
  - add: bomber planes
@@ -63,6 +72,8 @@ Missile Command is a 1980 arcade game developed and published by Atari, Inc. and
  - add: multi-warhead
  - add: colourful explosions
  - add: hilly terrain
+ - add: multiple intercepter batteries
+ - add: customise controls
  - add: cities that can be partially destroyed (maybe with civilian death count) OR have missiles target specific cities (total destruction on hit, similar to original game)
  - update: explosion on ground creates semi-circle / masked by ground instead of circle
  - optimise: break event handler into seperate class

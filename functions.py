@@ -3,6 +3,8 @@ from pygame.locals import *
 import os
 import math
 from config import *
+import json
+
 
 
 # Define helper functions
@@ -35,7 +37,7 @@ def load_sound(name):
         return NoneSound()
 
     fullname = os.path.join('data/snd/', name)
-
+    
     try:
         sound = pygame.mixer.Sound(fullname)
     except pygame.error as message:
@@ -46,6 +48,10 @@ def load_sound(name):
 
 
 def exit_game(screen):
+    # clear the screen
+    screen.fill(BACKGROUND)
+    pygame.display.update()
+
     pause = 0
     
     # pause music / sfx
@@ -117,6 +123,70 @@ def check_collisions(missile_list, explosion_list, city_list):
                 missile_list.remove(missile)
         for city in city_list[:]:
             if explosion.get_radius() > distance(explosion.get_center(), city.get_pos()):
-                city.set_destroyed(True)
+                city.set_destroyed(True)    # might not be needed if I just remove city from list
+                city_list.remove(city)
 
     return score
+
+def load_scores(file):
+    # open a json file containing scores and return dict
+    with open(file) as f:
+        return json.load(f)
+    
+
+def update_high_scores(score):
+    pass
+    # update the top 10 scores if score is within top 10
+
+def save_high_scores(file, high_scores):
+    pass
+    # save high-scores to file
+
+def show_high_scores(screen, scores):
+    # clear the screen
+    screen.fill(BACKGROUND)
+    pygame.display.update()
+
+    pause = 0
+
+    # generate heading msg, position, blit
+    high_score_heading = game_font.render('HIGH SCORES', False, INTERFACE_PRI)
+    text_height = high_score_heading.get_height()
+    text_y_pos_multiplier = 7
+    wide_score = 0
+    high_score_heading_pos = (SCREENSIZE[0] // 2 - (high_score_heading.get_width() // 2),
+                            SCREENSIZE[1] // 2 - (text_height * text_y_pos_multiplier))
+    screen.blit(high_score_heading, high_score_heading_pos)
+    text_y_pos_multiplier -= 2
+
+    # loop through dict 'score'
+    for pos, record in scores.items():
+        if len(pos) == 1:
+            pos = " " + pos
+        record["score"] = str(record["score"])
+        if wide_score <= len(record["score"]):
+            wide_score = len(record["score"])
+        else:
+            record["score"] = (" " * (wide_score - len(record["score"]))) + record["score"]
+        score_text = game_font.render(pos + " " + record["name"] + " " + record["score"], False, INTERFACE_SEC)
+        score_text_pos = (SCREENSIZE[0] // 2 - (score_text.get_width() // 2),
+                            SCREENSIZE[1] // 2 - (text_height * text_y_pos_multiplier))
+        screen.blit(score_text, score_text_pos)
+        text_y_pos_multiplier -= 1
+    
+    # generate instruction msg, position, blit
+    text_y_pos_multiplier -= 1
+    high_score_msg = game_font.render('PRESS \'SPACE\' TO CONTINUE', False, INTERFACE_SEC)
+    high_score_msg_pos = (SCREENSIZE[0] // 2 - (high_score_msg.get_width() // 2),
+                            SCREENSIZE[1] // 2 - (text_height * text_y_pos_multiplier))
+    screen.blit(high_score_msg, high_score_msg_pos)
+
+    # update the display
+    pygame.display.update()
+
+    # infinite loop to listen / wait for continue
+    while pause == 0:
+        for event in pygame.event.get():
+            if event.type == KEYDOWN:
+                if event.key == K_SPACE:
+                    pause = -1
