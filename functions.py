@@ -128,21 +128,55 @@ def check_collisions(missile_list, explosion_list, city_list):
 
     return score
 
+
 def load_scores(file):
     # open a json file containing scores and return dict
     with open(file) as f:
         return json.load(f)
     
 
-def update_high_scores(score):
-    pass
-    # update the top 10 scores if score is within top 10
+def update_high_scores(score, name, high_scores):
+    # check if score made it into the top 10 and determine position
+    score_pos = check_high_score(score, high_scores)
+    
+    # if it did make top 10, re-order the records
+    if score_pos > 0:
+        max_pos = 10
+        
+        # loop from max_pos up until I get to score_pos
+        for pos in range(max_pos, score_pos, -1):
+            # move the score down a pos
+            if pos <= max_pos and pos > 1:
+                high_scores[str(pos)]["name"] = high_scores[str(pos - 1)]["name"]
+                high_scores[str(pos)]["score"] = high_scores[str(pos - 1)]["score"]
 
+        # insert the new score
+        high_scores[str(score_pos)]["name"] = name
+        high_scores[str(score_pos)]["score"] = int(score)
+        
+    return high_scores
+
+
+def check_high_score(score, high_scores):
+    score_pos = 0
+
+    # check if score made it into the top 10 and determine position
+    for pos, record in high_scores.items():
+        if score > int(record["score"]) and score_pos == 0:
+            score_pos = int(pos)
+    
+    return score_pos
+
+    
 def save_high_scores(file, high_scores):
-    pass
     # save high-scores to file
+    j = json.dumps(high_scores)
+    f = open(file, "w")
+    f.write(j)
+    f.close()
 
-def show_high_scores(screen, scores):
+
+def show_high_scores(screen, high_scores):
     # clear the screen
     screen.fill(BACKGROUND)
     pygame.display.update()
@@ -159,8 +193,8 @@ def show_high_scores(screen, scores):
     screen.blit(high_score_heading, high_score_heading_pos)
     text_y_pos_multiplier -= 2
 
-    # loop through dict 'score'
-    for pos, record in scores.items():
+    # loop through dict 'high_scores'
+    for pos, record in high_scores.items():
         if len(pos) == 1:
             pos = " " + pos
         record["score"] = str(record["score"])

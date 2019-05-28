@@ -53,7 +53,6 @@ Missile Command is a 1980 arcade game developed and published by Atari, Inc. and
 [Flash port of the original game](http://www.arcadedivision.com/classicgame12/shooting/missile-command.html)
 
 ## Work in Progress
- - add:load high score file
  - add:update high score
  - add:save high score file
  - update:display cities / destroyed cities

@@ -6,9 +6,9 @@ from missile import Missile
 
 
 class Director():
-    def __init__(self, difficulty = 1):
+    def __init__(self, difficulty = 1, high_score = 0):
         self.player_score = 0
-        self.high_score = 7500          # TBC - load from file
+        self.high_score = high_score
         self.high_score_text = game_font.render('HIGH: {}'.format(self.high_score), False, INTERFACE_SEC)
         self.high_score_text_pos = SCREENSIZE[0] - self.high_score_text.get_width() - 5
         self.max_missile_count = 8
@@ -100,5 +100,5 @@ class Director():
     def set_difficulty(self, new_difficulty):
         self.difficulty = new_difficulty
     
-    def set_highscore(self):
-        pass
+    def get_player_score(self):
+        return self.player_score

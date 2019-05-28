@@ -51,13 +51,13 @@ def main():
     # Intercepter gun
     defence = Defence()
 
-    # setup the AI director
-    director = Director()
-
     # set the game running
     current_game_state = GAME_STATE_RUNNING
 
     show_high_scores(screen, high_scores)
+
+    # setup the AI director
+    director = Director(1, high_scores["1"]["score"])
 
     while True:
         # write event handlers here
@@ -134,6 +134,9 @@ def main():
         
         # hold for few seconds before proceeding to high-score or back to menu or game over splash
         if current_game_state == GAME_STATE_OVER:
+            if check_high_score != 0:
+                high_scores = update_high_scores(director.get_player_score(), "XXX", high_scores)
+                save_high_scores("scores.json", high_scores)
             time.sleep(3)
             # TBC - below line should move game on to new game state for menu/game-over/high-score/etc.
             current_game_state = GAME_STATE_MENU
