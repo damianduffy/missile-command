@@ -5,7 +5,13 @@ Remake of the classic Missile Command game by Atari.  Just for fun and practicin
 
 ## Story
 
+You are the local Missile Commander for the Missile Intercept Launch Function.  You are responsible for the safety of millions of citizens in six nearby cities.  Nuclear war has just broken out.  Wave after wave of nuclear warheads have been detected re-entering the atmostphere in your zone of control.
 
+You try to contact your fellow Commanders but all you get back on the radio are screems ... then static ... just static ...
+
+All that stands between the last remaining citizens of your country and a fireball of death are your lightning reflexes and sharp-shooting aim.  
+
+Get ready!
 
 ## How to Play
 
@@ -43,24 +49,24 @@ To deactivate the virtual environment
 
 ## Game Controls
 
+Use the mouse to select where you want to target.
 
+Press primary mouse button to fire.
 
 ## Original Game
-Missile Command is a 1980 arcade game developed and published by Atari, Inc. and licensed to Sega for European release. It was designed by Dave Theurer, who also designed Atari's vector graphics game Tempest from the same year. The 1981 Atari 2600 port of Missile Command by Rob Fulop sold over 2.5 million copies and became the third most popular cartridge for the system.
+Missile Command is a 1980 arcade game developed and published by Atari, Inc. and licensed to Sega for European release. It was designed by Dave Theurer, who also designed Atari's vector graphics game Tempest from the same year.Now, al The 1981 Atari 2600 port of Missile Command by Rob Fulop sold over 2.5 million copies and became the third most popular cartridge for the system.
 
 [Wikipedia article](https://en.wikipedia.org/wiki/Missile_Command)
 
 [Flash port of the original game](http://www.arcadedivision.com/classicgame12/shooting/missile-command.html)
 
 ## Work in Progress
- - add:update high score
- - add:save high score file
+ - update:enter name on high score
  - update:display cities / destroyed cities
  - update:add new design for intercepter(s)
  - add:add sound effects
  - add:add splash
  - add:add menu / credits
- - fix: overlap on text prompts (e.g. new level/game over ... followed by pause/exit)
  - add:add scoring based on missiles destroyed, cities remain, bonus / multiplier
  - add:tweek gameplay mechanics / play-test
  - add:clean up comments
