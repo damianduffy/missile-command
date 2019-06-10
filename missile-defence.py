@@ -12,6 +12,7 @@ from missile import Missile
 from explosion import Explosion
 from defence import Defence
 from director import Director
+from text import InputBox
 
 
 # Initialize game engine, screen and clock
@@ -134,11 +135,20 @@ def main():
         
         # hold for few seconds before proceeding to high-score or back to menu or game over splash
         if current_game_state == GAME_STATE_OVER:
+            input_box = InputBox(100, 100, 140, 32)
+            while input_box.check_finished() == False:
+                for event in pygame.event.get():
+                    input_box.handle_event(event)
+                input_box.update()
+                input_box.draw(screen)
+
+            '''
             if check_high_score != 0:
                 high_scores = update_high_scores(director.get_player_score(), "XXX", high_scores)
                 save_high_scores("scores.json", high_scores)
             time.sleep(3)
             # TBC - below line should move game on to new game state for menu/game-over/high-score/etc.
+            '''
             current_game_state = GAME_STATE_MENU
         
         # display the high scores
